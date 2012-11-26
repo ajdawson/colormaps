@@ -1,5 +1,5 @@
-rainbow
-rainbow colors
+# name: rainbow
+# description: rainbow colors
 161. 0. 199.
 130. 0. 220.
 30. 61. 255.

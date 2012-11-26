@@ -1,0 +1,26 @@
+#
+# Color table from NCL 6.1.0:
+#
+# The NCAR Command Language (Version 6.0.0) [Software]. (2012). 
+# Boulder, Colorado: UCAR/NCAR/CISL/VETS. http://dx.doi.org/10.5065/D6WD3XH5
+#
+# name: ncl_amwg_blueyellowred
+# description: NCL color table amwg_blueyellowred
+# source: NCL color table amwg_blueyellowred
+#
+0.51 0.13 0.94
+0.00 0.00 0.59
+0.00 0.00 0.80
+0.25 0.41 0.88
+0.12 0.56 1.00
+0.00 0.75 1.00
+0.63 0.82 1.00
+0.82 0.96 1.00
+1.00 1.00 0.78
+1.00 0.88 0.20
+1.00 0.67 0.00
+1.00 0.43 0.00
+1.00 0.00 0.00
+0.78 0.00 0.00
+0.63 0.14 0.14
+1.00 0.41 0.71

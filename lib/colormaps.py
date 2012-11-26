@@ -19,6 +19,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 import os
+import re
 
 import numpy as np
 from matplotlib.colors import ListedColormap
@@ -36,7 +37,7 @@ class ColormapBase(object):
 
     """
 
-    def __init__(self, name, description, colors):
+    def __init__(self, name, colors, description=None, attributes=None):
         """Create a :py:class:`colormaps.ColormapBase` instance.
 
         **Arguments:**
@@ -53,16 +54,21 @@ class ColormapBase(object):
 
         """
         self.name = name
-        self.description = description
+        self.description = description if description is not None else ''
         self.colors = self.__process_colors(colors)
         self.ncolors = len(colors)
+        try:
+            for key, value in attributes.items():
+                setattr(self, key, value)
+        except AttributeError:
+            pass
 
     def __process_colors(self, colors):
         try:
             if colors.ndim !=2 or colors.shape[1] != 3:
                 raise ValueError
         except (AttributeError, ValueError):
-            raise ValueError('colors must be an Nx3 array')
+            raise ValueError('colors must be an Nx3 array: {!s}'.format(self.name))
         if (colors > 1.).any():
             colors /= 255.
         return colors
@@ -175,7 +181,7 @@ def create_colormap(ncolors,
         red = np.interp(x1, x0, rgb[:, 0])
         green = np.interp(x1, x0, rgb[:, 1])
         blue = np.interp(x1, x0, rgb[:, 2])
-        rgb_interp = np.array(red, green, blue).transpose()
+        rgb_interp = np.array([red, green, blue]).transpose()
     if white:
         # Add white to the center of the colormap.
         rgb_white = np.ones([ncolors, 3])
@@ -206,17 +212,34 @@ def _find_palette_files():
     return palette_files
 
 
-def _colormap_base_from_file(filename):
+def _colormap_file_parser(filename, prefix=None, suffix=None):
     with open(filename, 'r') as f:
-        name = f.readline().strip()
-        while not name:
-            name = f.readline.strip()
-        description = f.readline().strip()
-        while not description:
-            description = f.readline.strip()
-        colors = [map(float, line.split()) for line in f.readlines()]
-        colors = np.array(filter(None, colors))
-    base = ColormapBase(name, description, colors)
+        header = filter(lambda line: re.match('^\s*#.*:\s+.*$', line),
+                        f.readlines())
+    body_template = ''.join(filter(None, [prefix, '{!s}', suffix]))
+    cmap_name = None
+    cmap_description = None
+    cmap_attributes = {}
+    for line in header:
+        line = line.replace('#', '', 1).split(':')
+        head = line[0].strip().lower()
+        body = line[1].strip()
+        if head == 'name':
+            cmap_name = body_template.format(body)
+        elif head == 'description':
+            cmap_description = body
+        else:
+            cmap_attributes[head] = body
+    try:
+        assert cmap_name is not None, \
+                'missing name in file: {!s}'.format(filename)
+    except AssertionError, e:
+        raise ValueError(e)
+    cmap_colors = np.loadtxt(filename)
+    base = ColormapBase(cmap_name,
+                        cmap_colors,
+                        description=cmap_description,
+                        attributes=cmap_attributes,)
     return base
 
 
@@ -224,7 +247,7 @@ def _load_colormap_bases():
     """Load colormap bases from file."""
     palette_files = _find_palette_files()
     for palette_file in palette_files:
-        base = _colormap_base_from_file(palette_file)
+        base = _colormap_file_parser(palette_file)
         register_colormap_base(base)
 
 

@@ -1,5 +1,5 @@
-blylrd
-blue-yellow-red
+# name: blylrd
+# description: blue-yellow-red
 8. 48. 120.
 23. 92. 184.
 61. 161. 240.

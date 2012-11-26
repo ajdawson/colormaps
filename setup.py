@@ -29,5 +29,8 @@ if __name__ == '__main__':
           author_email='dawson@atm.ox.ac.uk',
           packages=['colormaps'],
           package_dir={'colormaps': 'lib'},
-          package_data={'colormaps': ['palette/*']},)
+          package_data={'colormaps': ['palette/*.txt', 'palette/ncl/*.txt',
+                                      'palette/brewer/diverging/*.txt',
+                                      'palette/brewer/qualitative/*.txt',
+                                      'palette/brewer/sequential/*.txt']},)
 

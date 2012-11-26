@@ -1,5 +1,5 @@
-whpu
-white-purple
+# name: whpu
+# description: white-purple
 237. 248. 251.
 179. 205. 227.
 140. 150. 198.

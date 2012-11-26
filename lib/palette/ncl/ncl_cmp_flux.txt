@@ -1,0 +1,32 @@
+#
+# Color table from NCL 6.1.0:
+#
+# The NCAR Command Language (Version 6.0.0) [Software]. (2012). 
+# Boulder, Colorado: UCAR/NCAR/CISL/VETS. http://dx.doi.org/10.5065/D6WD3XH5
+#
+# name: ncl_cmp_flux
+# description: NCL color table cmp_flux
+# source: NCL color table cmp_flux
+#
+0.00 0.99 0.99
+0.03 0.87 0.99
+0.06 0.74 0.99
+0.09 0.62 0.99
+0.13 0.49 0.99
+0.16 0.36 0.99
+0.19 0.24 0.99
+0.33 0.33 0.99
+0.52 0.52 0.99
+0.71 0.71 0.99
+0.90 0.90 0.99
+0.99 0.90 0.90
+0.99 0.71 0.71
+0.99 0.52 0.52
+0.99 0.33 0.33
+0.99 0.24 0.19
+0.99 0.36 0.16
+0.99 0.49 0.13
+0.99 0.62 0.09
+0.99 0.74 0.06
+0.99 0.88 0.03
+0.99 0.99 0.00

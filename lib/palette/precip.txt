@@ -1,5 +1,5 @@
-precip
-white-blue-green-yellow-red
+# name: precip
+# description: white-blue-green-yellow-red
 255. 255. 255.
 214. 226. 255.
 181. 201. 255.

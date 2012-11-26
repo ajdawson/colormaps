@@ -1,0 +1,26 @@
+#
+# Color table from NCL 6.1.0:
+#
+# The NCAR Command Language (Version 6.0.0) [Software]. (2012). 
+# Boulder, Colorado: UCAR/NCAR/CISL/VETS. http://dx.doi.org/10.5065/D6WD3XH5
+#
+# name: ncl_amwg
+# description: NCL color table amwg
+# source: NCL color table amwg
+#
+0.58 0.44 0.86
+0.00 0.00 0.78
+0.24 0.39 0.90
+0.47 0.61 0.95
+0.69 0.88 0.90
+0.13 0.70 0.67
+0.60 0.80 0.20
+0.18 0.55 0.34
+0.96 0.90 0.75
+0.87 0.72 0.53
+1.00 0.88 0.00
+1.00 0.65 0.00
+1.00 0.27 0.00
+0.70 0.13 0.13
+1.00 0.71 0.76
+1.00 0.08 0.58

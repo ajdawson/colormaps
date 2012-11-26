@@ -1,5 +1,5 @@
-yegrblpi
-yellow-green-blue-pink
+# name: yegrblpi
+# description: yellow-green-blue-pink
 255. 240. 0.
 160. 200. 40.
 54. 168. 57.
