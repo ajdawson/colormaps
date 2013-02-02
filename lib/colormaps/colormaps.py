@@ -1,16 +1,16 @@
 """Colormap generation for matplotlib"""
 # Copyright (c) 2012 Andrew Dawson
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -18,6 +18,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+from __future__ import absolute_import, print_function
 import os
 import re
 
@@ -65,10 +66,11 @@ class ColormapBase(object):
 
     def __process_colors(self, colors):
         try:
-            if colors.ndim !=2 or colors.shape[1] != 3:
+            if colors.ndim != 2 or colors.shape[1] != 3:
                 raise ValueError
         except (AttributeError, ValueError):
-            raise ValueError('colors must be an Nx3 array: {!s}'.format(self.name))
+            raise ValueError('colors must be an Nx3 array: '
+                             '{!s}'.format(self.name))
         if (colors > 1.).any():
             colors /= 255.
         return colors
@@ -115,13 +117,14 @@ def list_colormap_bases(name=None, full=False):
     for basename in sorted(bases):
         try:
             base = _bases[basename]
-            print '{base.name}: {base.description}'.format(base=base)
+            print('{base.name}: {base.description}'.format(base=base))
             if full:
                 for color in base.colors:
-                    print '  {c[0]:.2f} {c[1]:.2f} {c[2]:.2f}'.format(c=color)
+                    print('  {c[0]:.2f} {c[1]:.2f} {c[2]:.2f}'.format(c=color))
         except KeyError:
             raise ValueError('colormap base does not exist: '
                              '{!s}'.format(name))
+
 
 def get_colormap_base_names():
     """Return a list of the names of all colormap bases."""
@@ -153,25 +156,25 @@ def create_colormap(ncolors,
                     reverse=False,
                     white=False):
     """Create a colormap from a set of base colors.
-    
+
     **Argument:**
-    
+
     *ncolors*
         The number of colors required in the colormap.
-    
+
     **Keyword arguments:**
-    
+
     *base*
         Name of the colormap base to build the colormap from. Use
         :py:func:`colormaps.list_colormap_bases` to print the names
         of available colormap bases. Use
         :py:func:`colormaps.register_colormap_base` to add a new
         colormap base.
-    
+
     *name*
         Name for the new colormap. If *name* is not given the default
         name 'create_colormap' is used.
-    
+
     *reverse*
         If *False* the colors will be in the same order as specified by
         the colormap base. If *True* the colors will be in the reverse
@@ -181,7 +184,7 @@ def create_colormap(ncolors,
         The number of white cells to be inserted into the middle of the
         colormap. The number of white cells specified is included in the
         value of *ncolors*. Defaults to no white cells.
-        
+
     """
     try:
         # Retrieve the colormap base.
@@ -230,8 +233,8 @@ def _find_palette_files():
     palette_files = []
     for palette_dir in palette_paths:
         for root, dirs, files in os.walk(palette_dir):
-            palette_files.extend([os.path.join(root, filename) \
-                                  for filename in files \
+            palette_files.extend([os.path.join(root, filename)
+                                  for filename in files
                                   if os.path.splitext(filename)[1] == '.txt'])
     return palette_files
 
@@ -254,11 +257,8 @@ def _colormap_file_parser(filename, prefix=None, suffix=None):
             cmap_description = body
         else:
             cmap_attributes[head] = body
-    try:
-        assert cmap_name is not None, \
-                'missing name in file: {!s}'.format(filename)
-    except AssertionError, e:
-        raise ValueError(e)
+    if cmap_name is None:
+        raise ValueError('missing name in file: {!s}'.format(filename))
     cmap_colors = np.loadtxt(filename)
     base = ColormapBase(cmap_name,
                         cmap_colors,
@@ -281,4 +281,3 @@ _load_colormap_bases()
 
 if __name__ == "__main__":
     pass
-
