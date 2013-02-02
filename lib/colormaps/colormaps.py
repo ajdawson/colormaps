@@ -189,8 +189,9 @@ def create_colormap(ncolors,
     except KeyError:
         raise ValueError()
     rgb = base.colors
-    # Determine how many colors are required after factoring in white cells.
-    ncolors_interp = (ncolors - white) if white else ncolors
+    # If white fills are needed, then work out how many.
+    nwhite = 2 - ncolors % 2 if white else 0
+    ncolors_interp = (ncolors - nwhite)
     # Get the required colors.
     base_length = rgb.shape[0]
     if base_length == ncolors_interp:
@@ -208,9 +209,9 @@ def create_colormap(ncolors,
     if white:
         # Add white to the center of the colormap.
         rgb_white = np.ones([ncolors, 3])
-        interp_middle = ncolors_interp / 2
+        interp_middle = ncolors_interp // 2
         rgb_white[:interp_middle] = rgb_interp[:interp_middle]
-        rgb_white[interp_middle+white] = rgb_interp[interp_middle:]
+        rgb_white[interp_middle + nwhite:] = rgb_interp[interp_middle:]
         rgb_interp = rgb_white
     if reverse:
         # Reverse the colors.
