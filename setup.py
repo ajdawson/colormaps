@@ -21,16 +21,30 @@
 from distutils.core import setup
 
 
-if __name__ == '__main__':
-    setup(name='colormaps',
-          version='1.0',
-          description='Easily generate colormaps for matplotlib',
-          author='Andrew Dawson',
-          author_email='dawson@atm.ox.ac.uk',
-          packages=['colormaps'],
-          package_dir={'colormaps': 'lib'},
-          package_data={'colormaps': ['palette/*.txt', 'palette/ncl/*.txt',
-                                      'palette/brewer/diverging/*.txt',
-                                      'palette/brewer/qualitative/*.txt',
-                                      'palette/brewer/sequential/*.txt']},)
+for line in open('lib/colormaps/__init__.py').readlines():
+    if (line.startswith('__version__')):
+        exec(line.strip())
 
+package_data = {
+    'colormaps': ['palette/*.txt', 'palette/ncl/*.txt',
+                  'palette/brewer/diverging/*.txt',
+                  'palette/brewer/qualitative/*.txt',
+                  'palette/brewer/sequential/*.txt']
+    }
+
+if __name__ == '__main__':
+    setup(
+        name='colormaps',
+        version=__version__,
+        description='Easily generate colormaps for matplotlib',
+        author='Andrew Dawson',
+        author_email='dawson@atm.ox.ac.uk',
+        url='http://github.com/ajdawson/colormaps',
+        long_description="""
+        colormaps can generate colormaps of varying lengths from sets of
+        base colors. It is designed to allow total control of colormaps
+        in matplotlib.
+        """,
+        packages=['colormaps'],
+        package_dir={'': 'lib'},
+        package_data=package_data,)

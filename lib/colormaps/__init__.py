@@ -23,13 +23,16 @@ from __future__ import absolute_import
 from .colormaps import (create_colormap,
                         register_colormap_base,
                         list_colormap_bases,
+                        get_colormap_base_names,
+                        get_colormap_base,
                         ColormapBase,)
 
 
 __all__ = ['create_colormap',
            'register_colormap_base',
            'list_colormap_bases',
+           'get_colormap_base_names',
+           'get_colormap_base',
            'ColormapBase',]
 
-__version__ = '1.0'
-
+__version__ = '1.0.x'

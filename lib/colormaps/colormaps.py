@@ -123,6 +123,29 @@ def list_colormap_bases(name=None, full=False):
             raise ValueError('colormap base does not exist: '
                              '{!s}'.format(name))
 
+def get_colormap_base_names():
+    """Return a list of the names of all colormap bases."""
+    return sorted(_bases.keys())
+
+
+def get_colormap_base(name):
+    """
+    Return a colormap base (a :py:class:`colormaps.ColormapBase`
+    instance.
+
+    **Argument:**
+
+    *name*
+        Name of the colormap base to return.
+
+    """
+    try:
+        base = _bases[name]
+    except KeyError:
+        raise ValueError('colormap base does not exist: '
+                         '{!s}'.format(name))
+    return base
+
 
 def create_colormap(ncolors,
                     base='rainbow',
