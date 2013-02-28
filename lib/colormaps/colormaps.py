@@ -32,14 +32,10 @@ _bases = {}
 
 
 class ColormapBase(object):
-    """A colormap base.
-
-    A container for base colors and meta-data.
-
-    """
+    """A container for base colors and associated meta-data."""
 
     def __init__(self, name, colors, description=None, attributes=None):
-        """Create a :py:class:`colormaps.ColormapBase` instance.
+        """Create a `ColormapBase` instance.
 
         **Arguments:**
 
@@ -50,8 +46,8 @@ class ColormapBase(object):
             Description of the colormap.
 
         *colors*
-            A :py:class:`numpy.ndarray` dimensions (N, 3) containing N
-            RGB triples.
+            A `numpy.ndarray` dimensions (N, 3) containing N RGB
+            triples.
 
         """
         self.name = name
@@ -82,7 +78,7 @@ def register_colormap_base(base, overwrite=False):
     **Argument:**
 
     *base*
-        A :py:class:`colormaps.ColormapBase` instance to regoster.
+        A `ColormapBase` instance to register.
 
     **Keyword argument:**
 
@@ -132,9 +128,7 @@ def get_colormap_base_names():
 
 
 def get_colormap_base(name):
-    """
-    Return a colormap base (a :py:class:`colormaps.ColormapBase`
-    instance.
+    """Return a colormap base (a `ColormapBase` instance).
 
     **Argument:**
 
@@ -166,10 +160,8 @@ def create_colormap(ncolors,
 
     *base*
         Name of the colormap base to build the colormap from. Use
-        :py:func:`colormaps.list_colormap_bases` to print the names
-        of available colormap bases. Use
-        :py:func:`colormaps.register_colormap_base` to add a new
-        colormap base.
+        `.list_colormap_bases` to print the names of available colormap
+        bases. Use `register_colormap_base` to add a new colormap base.
 
     *name*
         Name for the new colormap. If *name* is not given the default
@@ -181,9 +173,10 @@ def create_colormap(ncolors,
         order.
 
     *white*
-        The number of white cells to be inserted into the middle of the
-        colormap. The number of white cells specified is included in the
-        value of *ncolors*. Defaults to no white cells.
+        If *True* one white cell will be inserted into the centre of
+        colormaps with odd-length or two white cells in the case of
+        even-length colormaps. If *False* no white cells are inserted.
+        Defaults to *False*.
 
     """
     try:
