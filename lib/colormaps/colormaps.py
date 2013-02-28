@@ -28,7 +28,7 @@ from scipy.interpolate import interp1d
 
 
 # Dictionary to store colormap bases.
-_bases = {}
+_BASES = {}
 
 
 class ColormapBase(object):
@@ -52,7 +52,7 @@ class ColormapBase(object):
         """
         self.name = name
         self.description = description if description is not None else ''
-        self.colors = self.__process_colors(colors)
+        self.colors = self._process_colors(colors)
         self.ncolors = len(colors)
         try:
             for key, value in attributes.items():
@@ -60,7 +60,7 @@ class ColormapBase(object):
         except AttributeError:
             pass
 
-    def __process_colors(self, colors):
+    def _process_colors(self, colors):
         try:
             if colors.ndim != 2 or colors.shape[1] != 3:
                 raise ValueError
@@ -88,11 +88,11 @@ def register_colormap_base(base, overwrite=False):
         the same name if one exists.
 
     """
-    global _bases
-    if base.name in _bases.keys() and not overwrite:
+    global _BASES
+    if base.name in _BASES.keys() and not overwrite:
         raise ValueError('colormap base already exists: '
                          '{!s}'.format(base.name))
-    _bases[base.name] = base
+    _BASES[base.name] = base
 
 
 def list_colormap_bases(name=None, full=False):
@@ -109,10 +109,10 @@ def list_colormap_bases(name=None, full=False):
         will also be printed. Defaults to *False*.
 
     """
-    bases = _bases.keys() if name is None else [name]
+    bases = _BASES.keys() if name is None else [name]
     for basename in sorted(bases):
         try:
-            base = _bases[basename]
+            base = _BASES[basename]
             print('{base.name}: {base.description}'.format(base=base))
             if full:
                 for color in base.colors:
@@ -124,7 +124,7 @@ def list_colormap_bases(name=None, full=False):
 
 def get_colormap_base_names():
     """Return a list of the names of all colormap bases."""
-    return sorted(_bases.keys())
+    return sorted(_BASES.keys())
 
 
 def get_colormap_base(name):
@@ -137,7 +137,7 @@ def get_colormap_base(name):
 
     """
     try:
-        base = _bases[name]
+        base = _BASES[name]
     except KeyError:
         raise ValueError('colormap base does not exist: '
                          '{!s}'.format(name))
@@ -181,7 +181,7 @@ def create_colormap(ncolors,
     """
     try:
         # Retrieve the colormap base.
-        base = _bases[base]
+        base = _BASES[base]
     except KeyError:
         raise ValueError()
     rgb = base.colors
