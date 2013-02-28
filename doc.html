@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Package Documentation &mdash; colormaps 1.0.x documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="colormaps 1.0.x documentation" href="index.html" />
+    <link rel="next" title="Colormap Gallery" href="gallery.html" />
+    <link rel="prev" title="colormaps" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="gallery.html" title="Colormap Gallery"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="colormaps"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">colormaps 1.0.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="package-documentation">
+<h1>Package Documentation<a class="headerlink" href="#package-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="creating-colormaps">
+<h2>Creating colormaps<a class="headerlink" href="#creating-colormaps" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="colormaps.create_colormap">
+<tt class="descclassname">colormaps.</tt><tt class="descname">create_colormap</tt><big>(</big><em>ncolors</em>, <em>base='rainbow'</em>, <em>name=None</em>, <em>reverse=False</em>, <em>white=False</em><big>)</big><a class="headerlink" href="#colormaps.create_colormap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a colormap from a set of base colors.</p>
+<p><strong>Argument:</strong></p>
+<dl class="docutils">
+<dt><em>ncolors</em></dt>
+<dd>The number of colors required in the colormap.</dd>
+</dl>
+<p><strong>Keyword arguments:</strong></p>
+<dl class="docutils">
+<dt><em>base</em></dt>
+<dd>Name of the colormap base to build the colormap from. Use
+<a class="reference internal" href="#colormaps.list_colormap_bases" title="colormaps.list_colormap_bases"><tt class="xref py py-obj docutils literal"><span class="pre">list_colormap_bases</span></tt></a> to print the names of available colormap
+bases. Use <a class="reference internal" href="#colormaps.register_colormap_base" title="colormaps.register_colormap_base"><tt class="xref py py-obj docutils literal"><span class="pre">register_colormap_base</span></tt></a> to add a new colormap base.</dd>
+<dt><em>name</em></dt>
+<dd>Name for the new colormap. If <em>name</em> is not given the default
+name &#8216;create_colormap&#8217; is used.</dd>
+<dt><em>reverse</em></dt>
+<dd>If <em>False</em> the colors will be in the same order as specified by
+the colormap base. If <em>True</em> the colors will be in the reverse
+order.</dd>
+<dt><em>white</em></dt>
+<dd>If <em>True</em> one white cell will be inserted into the centre of
+colormaps with odd-length or two white cells in the case of
+even-length colormaps. If <em>False</em> no white cells are inserted.
+Defaults to <em>False</em>.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="colormaps.list_colormap_bases">
+<tt class="descclassname">colormaps.</tt><tt class="descname">list_colormap_bases</tt><big>(</big><em>name=None</em>, <em>full=False</em><big>)</big><a class="headerlink" href="#colormaps.list_colormap_bases" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the base colormaps.</p>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt><em>name</em></dt>
+<dd>List only the colormap named <em>name</em>.</dd>
+<dt><em>full</em></dt>
+<dd>If <em>False</em> only the name and description of the colormap bases
+will be printed. If <em>True</em> the colors (RGB in the range 0 to 1)
+will also be printed. Defaults to <em>False</em>.</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="managing-base-colormaps">
+<h2>Managing base colormaps<a class="headerlink" href="#managing-base-colormaps" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="colormaps.register_colormap_base">
+<tt class="descclassname">colormaps.</tt><tt class="descname">register_colormap_base</tt><big>(</big><em>base</em>, <em>overwrite=False</em><big>)</big><a class="headerlink" href="#colormaps.register_colormap_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a colormap base for use.</p>
+<p><strong>Argument:</strong></p>
+<dl class="docutils">
+<dt><em>base</em></dt>
+<dd>A <a class="reference internal" href="#colormaps.ColormapBase" title="colormaps.ColormapBase"><tt class="xref py py-obj docutils literal"><span class="pre">ColormapBase</span></tt></a> instance to register.</dd>
+</dl>
+<p><strong>Keyword argument:</strong></p>
+<dl class="docutils">
+<dt><em>overwrite</em></dt>
+<dd>If <em>False</em>, <em>base</em> will not overwrite a colormap base with the
+same name. If <em>True</em>, <em>base</em> will overwrite a colormap base with
+the same name if one exists.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="colormaps.get_colormap_base">
+<tt class="descclassname">colormaps.</tt><tt class="descname">get_colormap_base</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#colormaps.get_colormap_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a colormap base (a <a class="reference internal" href="#colormaps.ColormapBase" title="colormaps.ColormapBase"><tt class="xref py py-obj docutils literal"><span class="pre">ColormapBase</span></tt></a> instance).</p>
+<p><strong>Argument:</strong></p>
+<dl class="docutils">
+<dt><em>name</em></dt>
+<dd>Name of the colormap base to return.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="colormaps.get_colormap_base_names">
+<tt class="descclassname">colormaps.</tt><tt class="descname">get_colormap_base_names</tt><big>(</big><big>)</big><a class="headerlink" href="#colormaps.get_colormap_base_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of the names of all colormap bases.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="colormaps.ColormapBase">
+<em class="property">class </em><tt class="descclassname">colormaps.</tt><tt class="descname">ColormapBase</tt><big>(</big><em>name</em>, <em>colors</em>, <em>description=None</em>, <em>attributes=None</em><big>)</big><a class="headerlink" href="#colormaps.ColormapBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>A container for base colors and associated meta-data.</p>
+<blockquote>
+<div><dl class="attribute">
+<dt id="colormaps.ColormapBase.ncolors">
+<tt class="descname">ncolors</tt><a class="headerlink" href="#colormaps.ColormapBase.ncolors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of colors in the colormap base.</p>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Package Documentation</a><ul>
+<li><a class="reference internal" href="#creating-colormaps">Creating colormaps</a></li>
+<li><a class="reference internal" href="#managing-base-colormaps">Managing base colormaps</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">colormaps</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="gallery.html"
+                        title="next chapter">Colormap Gallery</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/doc.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="gallery.html" title="Colormap Gallery"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="colormaps"
+             >previous</a> |</li>
+        <li><a href="index.html">colormaps 1.0.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Andrew Dawson.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
