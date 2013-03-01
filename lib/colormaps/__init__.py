@@ -25,6 +25,7 @@ from .colormaps import (create_colormap,
                         list_colormap_bases,
                         get_colormap_base_names,
                         get_colormap_base,
+                        show_colormap,
                         ColormapBase,)
 
 
@@ -33,6 +34,7 @@ __all__ = ['create_colormap',
            'list_colormap_bases',
            'get_colormap_base_names',
            'get_colormap_base',
+           'show_colormap',
            'ColormapBase', ]
 
 __version__ = '1.0.x'

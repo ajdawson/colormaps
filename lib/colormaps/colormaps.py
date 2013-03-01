@@ -272,5 +272,28 @@ def _load_colormap_bases():
 _load_colormap_bases()
 
 
+def show_colormap(base):
+    """Display a colormap.
+
+    **Argument:**
+
+    *base*
+        The name of a base colormap or a `ColormapBase` instance to plot.
+
+    """
+    import matplotlib.pyplot as plt
+    from matplotlib.colorbar import ColorbarBase
+    try:
+        base = get_colormap_base(base)
+    except ValueError:
+        pass
+    cmap = create_colormap(base.ncolors, base=base.name)
+    fig = plt.figure(figsize=(9, .7))
+    ax = fig.add_axes([.01, .35, .98, .63])
+    cb = ColorbarBase(ax, cmap=cmap, orientation='horizontal', ticks=[])
+    cb.set_label('{:s}: {:d} colors'.format(base.name, base.ncolors))
+    plt.show()
+
+
 if __name__ == "__main__":
     pass

@@ -1,29 +1,47 @@
 Colormap Gallery
 ================
 
+Built-in colormaps
+------------------
+
 .. plot::
 
-   import matplotlib.pyplot as plt
-   from matplotlib.colorbar import ColorbarBase
-
-   from colormaps import (create_colormap,
-                          get_colormap_base,
-                          get_colormap_base_names)
+   from colormaps import get_colormap_base_names, show_colormap
 
 
-   def plot_base(base_name):
-       base = get_colormap_base(base_name)
-       cmap = create_colormap(base.ncolors, base=base_name)
-       fig = plt.figure(figsize=(9, .7))
-       ax = fig.add_axes([.01, .35, .98, .63])
-       cb = ColorbarBase(ax, cmap=cmap, orientation='horizontal', ticks=[])
-       cb.set_label('{:s}: {:d} colors'.format(base_name, base.ncolors))
-       plt.show()
+   bases = filter(lambda n: not(n.startswith('ncl_') or n.startswith('brewer_')),
+                  get_colormap_base_names())
+   for base in bases:
+       show_colormap(base)
 
 
-   base_names = get_colormap_base_names()
-   ncl_bases = filter(lambda n: n.startswith('ncl_'), base_names)
-   brewer_bases = filter(lambda n: n.startswith('brewer_'), base_names)
-   builtin_bases = filter(lambda n: n not in ncl_bases + brewer_bases, base_names)
-   for base in builtin_bases + brewer_bases + ncl_bases:
-       plot_base(base)
+ColorBrewer colormaps
+---------------------
+
+Maps downloaded from http://www.personal.psu.edu/cab38/ColorBrewer/ColorBrewer_RGB.html. These colors are licensed under an Apache-style license (http://www.personal.psu.edu/cab38/ColorBrewer/ColorBrewer_updates.html).
+
+.. plot::
+
+   from colormaps import get_colormap_base_names, show_colormap
+
+
+   bases = filter(lambda n: n.startswith('brewer_'),
+                  get_colormap_base_names())
+   for base in bases:
+       show_colormap(base)
+
+
+NCL colormaps
+-------------
+
+Colormaps from the NCAR Command Language version 6.1.0 (http://dx.doi.org/10.5065/D6WD3XH5)
+
+.. plot::
+
+   from colormaps import get_colormap_base_names, show_colormap
+
+
+   bases = filter(lambda n: n.startswith('ncl_'),
+                  get_colormap_base_names())
+   for base in bases:
+       show_colormap(base)
