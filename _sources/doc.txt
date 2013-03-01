@@ -12,6 +12,8 @@ Creating colormaps
 
 .. autofunction:: colormaps.list_colormap_bases
 
+.. autofunction:: colormaps.show_colormap
+
 
 Managing base colormaps
 -----------------------
